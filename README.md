@@ -1,3 +1,7 @@
+## Autor
+**Alcemir R P Junior**  
+E-mail: [al.junior.dev@gmail.com](mailto:al.junior.dev@gmail.com)
+
 # Feature Flag em Arquitetura Hexagonal
 
 Este projeto foi criado com o propósito de demonstrar o uso de **Feature Flags** dentro de uma aplicação baseada na **Arquitetura Hexagonal**. 
@@ -26,11 +30,31 @@ O projeto segue os princípios da **Arquitetura Hexagonal** (ou **Arquitetura de
 
 ```bash
 src/
-├── port/
-│   └── in/
-│   └── out/
+├── application
+│   └── port/
+│      └── in/
+│      └── out/
 ├── domain/
-├── adapter/
-│   └── in/
-│   └── out/
-└── shared/
+├── infra
+│   └── adapter/
+│      └── in/
+│      └── out/
+│   └── shared/
+```
+
+## Exemplos de Uso
+
+Este repositório inclui exemplos práticos de como as Feature Flags podem ser aplicadas em diferentes cenários dentro de um projeto com arquitetura hexagonal. Os exemplos abordam diferentes camadas e aspectos da aplicação, demonstrando a flexibilidade e a escalabilidade dessa abordagem.
+
+### 1. Ao Adicionar Padrão de Projeto Strategy
+Demonstramos como a implementação do padrão **Strategy** pode ser controlada por Feature Flags, permitindo habilitar ou desabilitar diferentes estratégias de forma dinâmica, sem impactar o núcleo do domínio.
+
+### 2. Ao Adicionar Novo Repositório
+Mostramos como novos repositórios podem ser integrados e gerenciados utilizando Feature Flags, possibilitando a transição suave entre diferentes fontes de dados sem afetar outras partes do sistema.
+
+### 3. Ao Alterar Swagger
+Ilustramos como as Feature Flags podem ser aplicadas para habilitar ou desabilitar determinadas rotas ou recursos documentados no **Swagger**, permitindo uma configuração controlada da documentação da API conforme novas funcionalidades são liberadas.
+
+### 4. Ao Alterar Regras de Domínio
+Este exemplo explora o uso de Feature Flags para controlar mudanças nas **regras de negócio**. Isso permite que novas regras sejam implementadas e testadas em ambientes específicos antes de serem totalmente liberadas em produção.
+
