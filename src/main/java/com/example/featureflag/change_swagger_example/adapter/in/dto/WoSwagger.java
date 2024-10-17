@@ -17,6 +17,6 @@ import org.springframework.validation.annotation.Validated;
 public class WoSwagger {
 
     @JsonProperty("businessId")
-    private String businessId = null;
+    private String businessId;
 
 }
