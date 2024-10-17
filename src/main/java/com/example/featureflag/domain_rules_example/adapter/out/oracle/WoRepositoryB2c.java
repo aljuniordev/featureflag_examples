@@ -1,6 +1,6 @@
 package com.example.featureflag.domain_rules_example.adapter.out.oracle;
 
-import com.example.featureflag.change_swagger_example.adapter.out.oracle.implementation.JpaOracleRepositoryImpl;
+import com.example.featureflag.domain_rules_example.adapter.out.oracle.implementation.JpaOracleRepositoryImpl;
 import com.example.featureflag.domain_rules_example.adapter.out.oracle.entity.WoEntity;
 import com.example.featureflag.domain_rules_example.adapter.out.oracle.mapper.WoEntityToDomain;
 import com.example.featureflag.domain_rules_example.domain.Wo;
@@ -19,6 +19,7 @@ public class WoRepositoryB2c implements WoRepositoryB2cPortOut {
     public WoRepositoryB2c(JpaOracleRepositoryImpl jpaOracleRepositoryImpl) {
         this.jpaOracleRepositoryImpl = jpaOracleRepositoryImpl;
     }
+
     @Override
     public Wo retrieveWorkOrderByBusinessId(String businessId) {
         WoEntity res = jpaOracleRepositoryImpl.retrieveWorkOrderByBusinessId(businessId);
