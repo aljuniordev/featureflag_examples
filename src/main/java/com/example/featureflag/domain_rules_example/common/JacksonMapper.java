@@ -1,4 +1,4 @@
-package com.example.featureflag.shared;
+package com.example.featureflag.domain_rules_example.common;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
