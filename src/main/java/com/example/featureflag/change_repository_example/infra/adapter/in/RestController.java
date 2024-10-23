@@ -4,7 +4,7 @@ import com.example.featureflag.change_repository_example.infra.adapter.in.dto.Wo
 import com.example.featureflag.change_repository_example.infra.adapter.in.dto.WoSwaggerFTFPTIXXX1;
 import com.example.featureflag.change_repository_example.infra.adapter.in.mapper.WoDomainToSwagger;
 import com.example.featureflag.change_repository_example.infra.adapter.in.mapper.WoDomainToSwaggerFTFPTIXXX1;
-import com.example.featureflag.change_repository_example.infra.adapter.out.feature_flag.FeatureFlagAdapterOut;
+import com.example.featureflag.change_repository_example.common.FeatureFlagGateway;
 import com.example.featureflag.change_repository_example.infra.adapter.out.oracle.WoRepositoryB2c;
 import com.example.featureflag.change_repository_example.domain.Wo;
 import com.example.featureflag.change_repository_example.application.port.in.CreateWoUseCaseV1;
@@ -23,13 +23,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("")
 public class RestController {
 
-    FeatureFlagAdapterOut featureFlagAdapterOut;
+    FeatureFlagGateway featureFlagGatewayAdapterOut;
     WoRepositoryB2c woRepositoryB2c;
 
     @Autowired
-    public RestController(FeatureFlagAdapterOut featureFlagAdapterOut,
+    public RestController(FeatureFlagGateway featureFlagGatewayAdapterOut,
                           WoRepositoryB2c woRepositoryB2c) {
-        this.featureFlagAdapterOut = featureFlagAdapterOut;
+        this.featureFlagGatewayAdapterOut = featureFlagGatewayAdapterOut;
         this.woRepositoryB2c = woRepositoryB2c;
     }
     @PostMapping("/createWorkOrder")
@@ -37,15 +37,15 @@ public class RestController {
                                                     @RequestBody String payload) {
         log.info("POST /createWorkOrder/" + payload);
 
-        if (featureFlagAdapterOut.isFtfPtiXxx1()) {
+        if (featureFlagGatewayAdapterOut.isFtfPtiXxx1()) {
             WoSwaggerFTFPTIXXX1 woSwaggerFTFPTIXXX1 =  JacksonMapper.loadObjectsFromFile(payload, WoSwaggerFTFPTIXXX1.class);
-            Wo woResponse = new CreateWoUseCaseV2(woRepositoryB2c, featureFlagAdapterOut.isFtfPtiXxx1()).executeFtfFenix(woSwaggerFTFPTIXXX1);
+            Wo woResponse = new CreateWoUseCaseV2(woRepositoryB2c, featureFlagGatewayAdapterOut.isFtfPtiXxx1()).executeFtfFenix(woSwaggerFTFPTIXXX1);
             WoSwaggerFTFPTIXXX1 woSwaggerResponse = WoDomainToSwaggerFTFPTIXXX1.execute(woResponse);
             return ResponseEntity.ok().body(woSwaggerResponse);
         }
 
         WoSwagger woSwagger = JacksonMapper.loadObjectsFromFile(payload, WoSwagger.class);
-        Wo woResponse = new CreateWoUseCaseV1(woRepositoryB2c, featureFlagAdapterOut.isFtfPtiXxx1()).execute(woSwagger);
+        Wo woResponse = new CreateWoUseCaseV1(woRepositoryB2c, featureFlagGatewayAdapterOut.isFtfPtiXxx1()).execute(woSwagger);
         WoSwagger woSwaggerResponse = WoDomainToSwagger.execute(woResponse);
         return ResponseEntity.ok().body(woSwaggerResponse);
     }

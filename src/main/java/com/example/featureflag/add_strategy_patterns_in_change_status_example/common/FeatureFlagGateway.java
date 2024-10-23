@@ -1,4 +1,4 @@
-package com.example.featureflag.domain_rules_example.infra.adapter.out.feature_flag;
+package com.example.featureflag.add_strategy_patterns_in_change_status_example.common;
 
 import com.opentable.hobknob.client.HobknobClient;
 import com.opentable.hobknob.client.HobknobClientFactory;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Log4j2
 @Component
-public class FeatureFlagAdapterOut {
+public class FeatureFlagGateway {
 
     HobknobClient client;
     @Value("#{'${featureToggle.etcdHosts}'.split(',')}")

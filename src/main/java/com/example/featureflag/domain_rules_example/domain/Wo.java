@@ -15,9 +15,9 @@ public class Wo {
     public void rulesCreateWo(boolean isFtfFenix) {
         if (isFtfFenix) {
             this.rulesCreateWoV2();
+        } else {
+            this.rulesCreateWoV1();
         }
-
-        this.rulesCreateWoV1();
     }
 
     private void rulesCreateWoV1() {

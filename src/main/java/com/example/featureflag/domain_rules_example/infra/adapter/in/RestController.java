@@ -2,7 +2,7 @@ package com.example.featureflag.domain_rules_example.infra.adapter.in;
 
 import com.example.featureflag.domain_rules_example.infra.adapter.in.dto.WoSwagger;
 import com.example.featureflag.domain_rules_example.infra.adapter.in.mapper.WoDomainToSwagger;
-import com.example.featureflag.domain_rules_example.infra.adapter.out.feature_flag.FeatureFlagAdapterOut;
+import com.example.featureflag.domain_rules_example.common.FeatureFlagGateway;
 import com.example.featureflag.domain_rules_example.infra.adapter.out.oracle.WoRepositoryB2c;
 import com.example.featureflag.domain_rules_example.domain.Wo;
 import com.example.featureflag.domain_rules_example.application.port.in.CreateWoUseCase;
@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("")
 public class RestController {
 
-    FeatureFlagAdapterOut featureFlagAdapterOut;
+    FeatureFlagGateway featureFlagGateway;
     WoRepositoryB2c woRepositoryB2c;
 
     @Autowired
-    public RestController(FeatureFlagAdapterOut featureFlagAdapterOut,
+    public RestController(FeatureFlagGateway featureFlagGateway,
                           WoRepositoryB2c woRepositoryB2c) {
-        this.featureFlagAdapterOut = featureFlagAdapterOut;
+        this.featureFlagGateway = featureFlagGateway;
         this.woRepositoryB2c = woRepositoryB2c;
     }
 
@@ -34,7 +34,7 @@ public class RestController {
                                                     @RequestBody WoSwagger payload) {
         log.info("POST /createWorkOrder/" + payload);
 
-        Wo woResponse = new CreateWoUseCase(woRepositoryB2c, featureFlagAdapterOut.isFtfPtiXxx1()).execute(payload);
+        Wo woResponse = new CreateWoUseCase(woRepositoryB2c, featureFlagGateway.isFtfPtiXxx1()).execute(payload);
         WoSwagger woSwaggerResponse = WoDomainToSwagger.execute(woResponse);
         return ResponseEntity.ok().body(woSwaggerResponse);
     }

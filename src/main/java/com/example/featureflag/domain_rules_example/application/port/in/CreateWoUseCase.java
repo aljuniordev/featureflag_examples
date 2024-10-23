@@ -16,6 +16,10 @@ public class CreateWoUseCase {
     public Wo execute(WoSwagger woSwagger) {
         Wo wo = woRepositoryB2cPortOut.retrieveWorkOrderByBusinessId(woSwagger.getBusinessId());
         wo.rulesCreateWo(isFtfFenix);
+
+        if (isFtfFenix) {
+            log.info("teste2");
+        }
         return wo;
     }
 
