@@ -9,7 +9,7 @@ import com.example.featureflag.add_strategy_patterns_in_change_status_example.in
 import com.example.featureflag.add_strategy_patterns_in_change_status_example.domain.Wo;
 import com.example.featureflag.add_strategy_patterns_in_change_status_example.application.port.in.CreateWoUseCaseV1;
 import com.example.featureflag.add_strategy_patterns_in_change_status_example.application.port.in.CreateWoUseCaseV2;
-import com.example.featureflag.domain_rules_example.common.JacksonMapper;
+import com.example.featureflag.add_strategy_patterns_in_change_status_example.common.JacksonMapper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
